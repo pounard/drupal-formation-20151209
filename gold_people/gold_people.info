@@ -1,0 +1,5 @@
+name = Gold - Gestion des gens
+core = 7.x
+package = Gold
+description = Fait le lien avec la feature Gold Premium
+dependencies[] = gold_premium
