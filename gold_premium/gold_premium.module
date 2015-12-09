@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Gold - contenu premium feature.
+ */
+
+include_once 'gold_premium.features.inc';

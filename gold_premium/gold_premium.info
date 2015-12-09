@@ -1,0 +1,16 @@
+name = Gold - contenu premium
+core = 7.x
+package = Gold
+dependencies[] = features
+dependencies[] = image
+dependencies[] = menu
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_base][] = field_gallery
+features[field_base][] = field_visuel
+features[field_instance][] = node-premium-body
+features[field_instance][] = node-premium-field_gallery
+features[field_instance][] = node-premium-field_visuel
+features[menu_custom][] = main-menu
+features[node][] = premium
