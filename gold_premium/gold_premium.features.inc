@@ -10,7 +10,7 @@
 function gold_premium_node_info() {
   $items = array(
     'premium' => array(
-      'name' => t('Contenu premium'),
+      'name' => t('Premium'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
