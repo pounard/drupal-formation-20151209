@@ -17,4 +17,5 @@ features[field_instance][] = node-premium-field_poids_du_chat
 features[field_instance][] = node-premium-field_visuel
 features[menu_custom][] = main-menu
 features[node][] = premium
+features[user_permission][] = view premium content
 features[user_role][] = premium member

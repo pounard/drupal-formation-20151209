@@ -5,3 +5,39 @@
  */
 
 include_once 'gold_premium.features.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function gold_premium_permission() {
+  return [
+    'view premium content' => [
+      'title'       => t('View premium content'),
+      'description' => t('View premium content.'),
+    ],
+  ];
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function gold_premium_block_info() {
+  return [
+    'gold_status' => [
+      'info'  => t("[GOLD] Current user premium status"),
+      'cache' => DRUPAL_NO_CACHE,
+    ],
+  ];
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function gold_premium_block_view($delta = '') {
+  switch ($delta) {
+
+    case 'gold_status':
+      // @todo
+      break;
+  }
+}
