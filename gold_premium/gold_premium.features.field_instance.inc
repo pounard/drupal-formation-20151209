@@ -104,6 +104,52 @@ function gold_premium_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-premium-field_poids_du_chat'.
+  $field_instances['node-premium-field_poids_du_chat'] = array(
+    'bundle' => 'premium',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_poids_du_chat',
+    'label' => 'Poids du chat',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => 'kg',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => -1,
+    ),
+  );
+
   // Exported field_instance: 'node-premium-field_visuel'.
   $field_instances['node-premium-field_visuel'] = array(
     'bundle' => 'premium',
@@ -158,6 +204,7 @@ function gold_premium_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Gallerie');
+  t('Poids du chat');
   t('Visuel');
 
   return $field_instances;

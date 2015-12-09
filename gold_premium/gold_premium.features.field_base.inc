@@ -53,6 +53,21 @@ function gold_premium_field_default_field_bases() {
     'type' => 'image',
   );
 
+  // Exported field_base: 'field_poids_du_chat'.
+  $field_bases['field_poids_du_chat'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_poids_du_chat',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
   // Exported field_base: 'field_visuel'.
   $field_bases['field_visuel'] = array(
     'active' => 1,
