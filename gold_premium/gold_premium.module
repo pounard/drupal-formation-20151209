@@ -37,6 +37,21 @@ function gold_premium_menu() {
     'file'              => 'gold_premium.pages.inc',
   ];
 
+  $items['admin/people/premium-users'] = [
+    'title'             => "Premium users",
+    'page callback'     => 'gold_premium_page_premium_users_list',
+    'access arguments'  => ['administer users'],
+    'type'              => MENU_CALLBACK | MENU_VISIBLE_IN_BREADCRUMB,
+    'file'              => 'gold_premium.pages.inc',
+  ];
+  $items['admin/people/premium-users-plus-plus'] = [
+    'title'             => "Premium users",
+    'page callback'     => 'gold_premium_page_premium_users_list_plus_plus',
+    'access arguments'  => ['administer users'],
+    'type'              => MENU_CALLBACK | MENU_VISIBLE_IN_BREADCRUMB,
+    'file'              => 'gold_premium.pages.inc',
+  ];
+
   return $items;
 }
 
