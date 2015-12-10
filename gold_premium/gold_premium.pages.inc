@@ -4,6 +4,45 @@
  * Pages.
  */
 
+function gold_premium_mon_form($form, &$form_state, $pouet) {
+
+  $form['pouet'] = [
+    '#type'   => 'value',
+    '#value'  => $pouet,
+  ];
+
+  $form['#pouet'] = $pouet;
+
+  $form['name'] = [
+    '#type'         => 'textfield',
+    '#required'     => true,
+    '#title'        => t("Your name"),
+    '#description'  => t("Please, enter your name here"),
+    '#attributes'   => ['placeholder' => $pouet],
+  ];
+
+  $form['actions']['#type'] = 'actions';
+  $form['actions']['submit'] = [
+    '#type'   => 'submit',
+    '#value'  => t("Hop!"),
+  ];
+
+  return $form;
+}
+
+function gold_premium_mon_form_submit($form, &$form_state) {
+
+  // #type = value
+  $form_state['values']['pouet'];
+
+  // toto
+  $form['#pouet'];
+
+  drupal_set_message(t("Hello, @name", [
+    '@name' => check_plain($form_state['values']['name']),
+  ]));
+}
+
 /**
  * Am I premium page.
  */
@@ -95,11 +134,35 @@ function gold_premium_page_premium_users_list_plus_plus() {
   }
 
   return [
+    'form'  => drupal_get_form('gold_premium_mon_form', "Pouet"),
     'table' => [
       '#theme'  => 'table',
       '#header' => $header,
       '#rows'   => $rows,
     ],
+    'pager' => [
+      '#theme'    => 'pager',
+      '#element'  => (PagerDefault::$maxElement - 1),
+    ],
+  ];
+}
+
+/**
+ * Premium users list.
+ */
+function gold_premium_list_all_nodes() {
+
+  $r = db_select('node', 'n')
+    ->fields('n', ['nid'])
+    ->addTag('node_access')
+    ->extend('PagerDefault')
+    ->limit(7)
+    ->execute()
+    ->fetchCol()
+  ;
+
+  return [
+    'nodes' => node_view_multiple(node_load_multiple($r), 'teaser'),
     'pager' => [
       '#theme'    => 'pager',
       '#element'  => (PagerDefault::$maxElement - 1),

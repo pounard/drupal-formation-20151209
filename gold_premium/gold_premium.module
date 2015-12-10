@@ -37,6 +37,23 @@ function gold_premium_menu() {
     'file'              => 'gold_premium.pages.inc',
   ];
 
+  $items['pouet'] = [
+    'title'             => "Pouet",
+    'page callback'     => 'gold_premium_list_all_nodes',
+    'access arguments'  => ['access content'],
+    'type'              => MENU_NORMAL_ITEM,
+    'file'              => 'gold_premium.pages.inc',
+  ];
+
+  $items['superform'] = [
+    'title'             => "Super formulaire",
+    'page callback'     => 'drupal_get_form',
+    'page arguments'    => ['gold_premium_mon_form', "Cassoulet"],
+    'access arguments'  => ['access content'],
+    'type'              => MENU_NORMAL_ITEM,
+    'file'              => 'gold_premium.pages.inc',
+  ];
+
   $items['admin/people/premium-users'] = [
     'title'             => "Premium users",
     'page callback'     => 'gold_premium_page_premium_users_list',
@@ -104,6 +121,27 @@ function gold_premium_block_view($delta = '') {
         ],
       ];
   }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function gold_premium_form_alter(&$form, &$form_state, $form_id) {
+  // Faire quelques chose
+  if ('gold_premium_mon_form' === $form_id) {
+    $form['actions']['cancel'] = [
+      '#type'   => 'markup',
+      '#markup' => l(t("Cancel"), current_path()),
+    ];
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function gold_premium_form_gold_premium_mon_form_alter(&$form, &$form_state) {
+  // Faire quelques chose
+  $form['actions']['cancel']['#weight'] = -10;
 }
 
 /**
