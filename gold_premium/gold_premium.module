@@ -15,6 +15,32 @@ include_once 'gold_premium.features.inc';
 const GOLD_PREMIUM_PERM_VIEW = 'view premium content';
 
 /**
+ * Implements hook_menu().
+ */
+function gold_premium_menu() {
+  $items = [];
+
+  $items['am-i-premium'] = [
+    'title'             => "Am I premium ?",
+    'page callback'     => 'gold_premium_page_am_i_premium',
+    'access calback'    => 'user_access',                     //
+    'access arguments'  => ['access content'],                // -> user_access('access content');
+    'type'              => MENU_NORMAL_ITEM,
+    'file'              => 'gold_premium.pages.inc',
+  ];
+  $items['am-i-premium/%user'] = [
+    'title'             => "Am I premium ?",
+    'page callback'     => 'gold_premium_page_am_i_premium',
+    'page arguments'    => [1],
+    'access arguments'  => ['access content'],
+    'type'              => MENU_CALLBACK | MENU_VISIBLE_IN_BREADCRUMB,
+    'file'              => 'gold_premium.pages.inc',
+  ];
+
+  return $items;
+}
+
+/**
  * Implements hook_permission().
  */
 function gold_premium_permission() {
@@ -29,8 +55,8 @@ function gold_premium_permission() {
 function gold_premium_theme() {
   return [
     'premium_block' => [
-      'variables' => ['is_premium' => false],
-      'template' => 'premium-is-block',
+      'variables' => ['is_premium' => false, 'account' => null],
+      'template'  => 'premium-is-block',
     ],
   ];
 }
@@ -58,6 +84,7 @@ function gold_premium_block_view($delta = '') {
       return [
         'content' => [
           '#theme'      => 'premium_block',
+          '#account'    => user_load($GLOBALS['user']->uid),
           '#is_premium' => user_access(GOLD_PREMIUM_PERM_VIEW),
         ],
       ];
@@ -67,8 +94,15 @@ function gold_premium_block_view($delta = '') {
 /**
  * Implements hook_block_view_alter().
  */
-function gold_premium_block_view_alter(&$data, $block) {
-  if ('gold_premium' === $block->module && 'gold_status' === $block->delta) {
-    $data['content']['#access'] = user_access(GOLD_PREMIUM_PERM_VIEW);
-  }
+// function gold_premium_block_view_alter(&$data, $block) {
+//   if ('gold_premium' === $block->module && 'gold_status' === $block->delta) {
+//     $data['content']['#access'] = user_access(GOLD_PREMIUM_PERM_VIEW);
+//   }
+// }
+
+/**
+ * Implements hook_block_view_MODULE_DELTA_alter().
+ */
+function gold_premium_block_view_gold_premium_gold_status_alter(&$data, $block) {
+  $data['content']['#access'] = user_access(GOLD_PREMIUM_PERM_VIEW);
 }

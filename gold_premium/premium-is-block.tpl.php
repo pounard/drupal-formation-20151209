@@ -1,7 +1,7 @@
 <p>
   <?php if ($is_premium): ?>
-    TADA
+    <?php echo t("@name is premium", ['@name' => format_username($account)]); ?>
   <?php else: ?>
-    BOUH
+    <?php echo t("@name is not premium", ['@name' => format_username($account)]); ?>
   <?php endif; ?>
 </p>
